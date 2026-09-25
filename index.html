@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <nav class="container">
+            <div class="logo">Abhiraj Singh Chandel</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="about" class="hero container">
+        <h1>Hi, I'm <span class="highlight">Abhiraj Singh Chadel</span>.</h1>
+        <p class="subtitle">A passionate Web Developer & Designer creating clean and functional websites.</p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects container">
+        <h2>Selected Projects</h2>
+        <div class="project-grid" id="projectContainer">
+            <p>Loading projects from Firebase...</p>
+        </div>
+    </section>
+        <!-- Add Project Form Section -->
+    <section id="submit-project" class="submit-section container">
+        <div class="section-header">
+            <h2>Post Your Project</h2>
+            <p>Share your project and it will immediately appear in the portfolio above.</p>
+        </div>
+
+        <form id="addProjectForm" class="project-form">
+            <div class="form-group">
+                <label for="projTitle">Project Title</label>
+                <input type="text" id="projTitle" placeholder="e.g. AI Video Editor" required>
+            </div>
+
+            <div class="form-group">
+                <label for="projTag">Category / Tag</label>
+                <input type="text" id="projTag" placeholder="e.g. Video Editing, Web App, UI Design" required>
+            </div>
+
+            <div class="form-group">
+                <label for="projDesc">Description</label>
+                <textarea id="projDesc" rows="3" placeholder="Short description of your project..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="projLink">Project URL / Link</label>
+                <input type="url" id="projLink" placeholder="https://github.com/your-repo" required>
+            </div>
+
+            <button type="submit" id="submitBtn" class="btn btn-primary">
+                <i class="fa-solid fa-paper-plane"></i> Post Project
+            </button>
+            <p id="formStatus" class="form-status"></p>
+        </form>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact container">
+        <h2>Get In Touch</h2>
+        <p>Feel free to reach out if you'd like to collaborate or just say hi!</p>
+        <a href="mailto:alex@example.com" class="email-link">2k26.2610825@gmail.com</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Abhiraj Singh Chandel. Built with simplicity in mind.</p>
+    </footer>
+
+    <!-- Firebase SDK Modular Scripts -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>
