@@ -3,85 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Portfolio & Project Hub</title>
     <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Header / Navigation -->
-    <header>
-        <nav class="container">
-            <div class="logo">Abhiraj Singh Chandel</div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">PORTFOLIO<span class="accent-dot">.</span></a>
+            <nav class="nav-links">
+                <a href="#featured"><i class="fa-solid fa-layer-group"></i> My Works</a>
+                <a href="#community"><i class="fa-solid fa-users"></i> Community Hub</a>
+            </nav>
+        </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="about" class="hero container">
-        <h1>Hi, I'm <span class="highlight">Abhiraj Singh Chandel</span>.</h1>
-        <p class="subtitle">A passionate Web Developer & Designer creating clean and functional websites.</p>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects container">
-        <h2>Selected Projects</h2>
-        <div class="project-grid" id="projectContainer">
-            <p>Loading projects from Firebase...</p>
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">Welcome to my space</span>
+            <h1>Crafting Digital Experiences & Collaborative Spaces</h1>
+            <p>Explore my personal work below, or submit your own project to be featured in the interactive community hub.</p>
+            <div class="hero-btns">
+                <a href="#featured" class="btn btn-primary">View My Works</a>
+                <a href="#community" class="btn btn-outline">Share Your Project</a>
+            </div>
         </div>
     </section>
-        <!-- Add Project Form Section -->
-    <section id="submit-project" class="submit-section container">
-        <div class="section-header">
-            <h2>Post Your Project</h2>
-            <p>Share your project and it will immediately appear in the portfolio above.</p>
+
+    <!-- SECTION 1: Personal Projects & Works -->
+    <section id="featured" class="section">
+        <div class="section-title">
+            <span class="section-tag">Curated Showcase</span>
+            <h2>My Projects & Works</h2>
+            <p>A selection of custom applications, video presets, and web tools I've built.</p>
         </div>
 
-        <form id="addProjectForm" class="project-form">
-            <div class="form-group">
-                <label for="projTitle">Project Title</label>
-                <input type="text" id="projTitle" placeholder="e.g. AI Video Editor" required>
+        <div class="projects-grid">
+            <!-- Personal Hardcoded Projects -->
+            <div class="project-card static-card">
+                <div class="card-header">
+                    <span class="card-tag">Web App</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square card-icon"></i>
+                </div>
+                <h3>Portfolio Website</h3>
+                <p>Minimal, dynamic developer portfolio integrated with real-time Firestore synchronization.</p>
+                <div class="card-footer">
+                    <a href="#" class="card-link">Explore Repo</a>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="projTag">Category / Tag</label>
-                <input type="text" id="projTag" placeholder="e.g. Video Editing, Web App, UI Design" required>
+            <div class="project-card static-card">
+                <div class="card-header">
+                    <span class="card-tag">Video Production</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square card-icon"></i>
+                </div>
+                <h3>Film Preset & Overlay Suite</h3>
+                <p>High-contrast black & white cinematic presets and custom animated text overlay templates.</p>
+                <div class="card-footer">
+                    <a href="#" class="card-link">View Assets</a>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="projDesc">Description</label>
-                <textarea id="projDesc" rows="3" placeholder="Short description of your project..." required></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="projLink">Project URL / Link</label>
-                <input type="url" id="projLink" placeholder="https://github.com/your-repo" required>
-            </div>
-
-            <button type="submit" id="submitBtn" class="btn btn-primary">
-                <i class="fa-solid fa-paper-plane"></i> Post Project
-            </button>
-            <p id="formStatus" class="form-status"></p>
-        </form>
+        </div>
     </section>
 
+    <!-- SECTION 2: Community Hub & Firebase Live Feed -->
+    <section id="community" class="section community-section">
+        <div class="section-title">
+            <span class="section-tag highlight">Interactive Lab</span>
+            <h2>Connect & Share Projects</h2>
+            <p>A open space for creators. Submit your project on the right, and watch it render live on the left.</p>
+        </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact container">
-        <h2>Get In Touch</h2>
-        <p>Feel free to reach out if you'd like to collaborate or just say hi!</p>
-        <a href="mailto:alex@example.com" class="email-link">2k26.2610825@gmail.com</a>
+        <div class="community-wrapper">
+            
+            <!-- Left Side: Dynamic Firebase Feed -->
+            <div class="feed-container">
+                <div class="feed-header">
+                    <h3><i class="fa-solid fa-rss"></i> Live Community Feed</h3>
+                    <span class="live-indicator"><span class="dot"></span> Firestore Synced</span>
+                </div>
+                <div id="projectContainer" class="community-grid">
+                    <!-- Firebase documents will load dynamically here -->
+                    <p class="loading-text">Loading projects from Firestore...</p>
+                </div>
+            </div>
+
+            <!-- Right Side: Submission Form -->
+            <div class="form-container">
+                <div class="form-card">
+                    <div class="form-header">
+                        <h3><i class="fa-solid fa-paper-plane"></i> Submit Project</h3>
+                        <p>Fill out the fields to publish your creation to the community database instantly.</p>
+                    </div>
+
+                    <form id="addProjectForm">
+                        <div class="form-group">
+                            <label for="projTitle">Project Name</label>
+                            <input type="text" id="projTitle" placeholder="e.g. AI Video Tool" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="projTag">Category / Tag</label>
+                            <input type="text" id="projTag" placeholder="e.g. Web App, Preset, UI/UX" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="projDesc">Description</label>
+                            <textarea id="projDesc" rows="3" placeholder="Brief explanation of your work..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="projLink">Project / Repo URL</label>
+                            <input type="url" id="projLink" placeholder="https://github.com/your-username" required>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="btn btn-primary btn-full">
+                            Publish to Live Feed
+                        </button>
+                        <p id="formStatus" class="form-status"></p>
+                    </form>
+                </div>
+            </div>
+
+        </div>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Abhiraj Singh Chandel. Built with simplicity in mind.</p>
+        <p>&copy; 2026 Developer Portfolio. Powered by Firebase Firestore.</p>
     </footer>
 
-    <!-- Firebase SDK Modular Scripts -->
     <script type="module" src="script.js"></script>
 </body>
 </html>
