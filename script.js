@@ -4,9 +4,7 @@ import {
     getFirestore, 
     collection, 
     getDocs, 
-    addDoc, 
-    deleteDoc, 
-    doc 
+    addDoc 
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 // Firebase Configuration
@@ -23,24 +21,6 @@ const firebaseConfig = {
 // Initialize Firebase & Firestore
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
-// Helper function to attach delete event listeners to all trash buttons
-function attachDeleteListeners() {
-    document.querySelectorAll(".delete-btn").forEach((btn) => {
-        btn.addEventListener("click", async (e) => {
-            const id = e.currentTarget.getAttribute("data-id");
-            if (confirm("Are you sure you want to delete this project?")) {
-                try {
-                    await deleteDoc(doc(db, "projects", id));
-                    loadProjects(); // Reload grids after deletion
-                } catch (err) {
-                    console.error("Error deleting document:", err);
-                    alert("Failed to delete project. Check database security rules.");
-                }
-            }
-        });
-    });
-}
 
 // Function to fetch, filter, and display projects from Firestore
 async function loadProjects() {
@@ -61,14 +41,12 @@ async function loadProjects() {
             return;
         }
 
-        let personalCount = 0;
         let communityCount = 0;
 
         querySnapshot.forEach((documentSnap) => {
             const data = documentSnap.data();
-            const docId = documentSnap.id;
 
-            // Create individual project card element
+            // Create individual project card element without trash icons
             const card = document.createElement("div");
             card.className = "project-card";
 
@@ -76,9 +54,6 @@ async function loadProjects() {
                 <div>
                     <div class="card-header">
                         <span class="card-tag">${data.tag || "Project"}</span>
-                        <button class="delete-btn" data-id="${docId}" title="Delete Project">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
                     </div>
                     <h3>${data.title || "Untitled Project"}</h3>
                     <p>${data.description || "No description provided."}</p>
@@ -93,10 +68,7 @@ async function loadProjects() {
             // ROUTING LOGIC:
             // Projects with type "personal" go to My Works. All others go to Community Feed.
             if (data.type === "personal") {
-                if (personalContainer) {
-                    personalContainer.appendChild(card);
-                    personalCount++;
-                }
+                if (personalContainer) personalContainer.appendChild(card);
             } else {
                 if (communityContainer) {
                     communityContainer.appendChild(card);
@@ -109,9 +81,6 @@ async function loadProjects() {
         if (communityCount === 0 && communityContainer) {
             communityContainer.innerHTML = `<p style="color: var(--text-muted); grid-column: 1/-1;">No community submissions yet. Be the first to post!</p>`;
         }
-
-        // Attach delete functionality to newly created cards
-        attachDeleteListeners();
 
     } catch (error) {
         console.error("Firebase Fetch Error:", error);
@@ -138,21 +107,18 @@ if (addProjectForm) {
         formStatus.textContent = "Posting project to database...";
 
         try {
-            // Save document into Firestore 'projects' collection as 'community' type
             await addDoc(collection(db, "projects"), {
                 title: title,
                 tag: tag,
                 description: description,
                 link: link,
-                type: "community" // Automatically tagged as community contribution
+                type: "community"
             });
 
             formStatus.style.color = "#10b981";
             formStatus.textContent = "Project published successfully!";
 
             addProjectForm.reset();
-
-            // Refresh project feeds automatically
             loadProjects();
 
         } catch (error) {
