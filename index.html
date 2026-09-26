@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio & Project Hub</title>
+    <title>Portfolio & Community Showcase</title>
     <link rel="stylesheet" href="style.css">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <!-- Header Navigation -->
+    <!-- Navigation Header -->
     <header class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">PORTFOLIO<span class="accent-dot">.</span></a>
@@ -41,60 +41,39 @@
         <div class="section-title">
             <span class="section-tag">Curated Showcase</span>
             <h2>My Projects & Works</h2>
-            <p>A selection of custom applications, video presets, and web tools I've built.</p>
+            <p>Personal applications, videography projects, presets, and web builds.</p>
         </div>
 
-        <div class="projects-grid">
-            <!-- Personal Hardcoded Projects -->
-            <div class="project-card static-card">
-                <div class="card-header">
-                    <span class="card-tag">Web App</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square card-icon"></i>
-                </div>
-                <h3>Portfolio Website</h3>
-                <p>Minimal, dynamic developer portfolio integrated with real-time Firestore synchronization.</p>
-                <div class="card-footer">
-                    <a href="#" class="card-link">Explore Repo</a>
-                </div>
-            </div>
-
-            <div class="project-card static-card">
-                <div class="card-header">
-                    <span class="card-tag">Video Production</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square card-icon"></i>
-                </div>
-                <h3>Film Preset & Overlay Suite</h3>
-                <p>High-contrast black & white cinematic presets and custom animated text overlay templates.</p>
-                <div class="card-footer">
-                    <a href="#" class="card-link">View Assets</a>
-                </div>
-            </div>
+        <!-- Personal Projects Load Dynamically Here (type: "personal") -->
+        <div id="personalProjectContainer" class="projects-grid">
+            <p class="loading-text">Loading personal projects...</p>
         </div>
     </section>
 
-    <!-- SECTION 2: Community Hub & Firebase Live Feed -->
+    <!-- SECTION 2: Community Hub & Visitor Submissions -->
     <section id="community" class="section community-section">
         <div class="section-title">
             <span class="section-tag highlight">Interactive Lab</span>
             <h2>Connect & Share Projects</h2>
-            <p>A open space for creators. Submit your project on the right, and watch it render live on the left.</p>
+            <p>An open space for creators. Submit your project on the right, and watch it render live on the left.</p>
         </div>
 
         <div class="community-wrapper">
             
-            <!-- Left Side: Dynamic Firebase Feed -->
+            <!-- Left Column: Dynamic Firebase Community Feed -->
             <div class="feed-container">
                 <div class="feed-header">
                     <h3><i class="fa-solid fa-rss"></i> Live Community Feed</h3>
                     <span class="live-indicator"><span class="dot"></span> Firestore Synced</span>
                 </div>
+
+                <!-- Community Projects Load Dynamically Here (type: "community") -->
                 <div id="projectContainer" class="community-grid">
-                    <!-- Firebase documents will load dynamically here -->
-                    <p class="loading-text">Loading projects from Firestore...</p>
+                    <p class="loading-text">Loading community projects...</p>
                 </div>
             </div>
 
-            <!-- Right Side: Submission Form -->
+            <!-- Right Column: Submission Form -->
             <div class="form-container">
                 <div class="form-card">
                     <div class="form-header">
@@ -110,7 +89,7 @@
 
                         <div class="form-group">
                             <label for="projTag">Category / Tag</label>
-                            <input type="text" id="projTag" placeholder="e.g. Web App, Preset, UI/UX" required>
+                            <input type="text" id="projTag" placeholder="e.g. Videography, Web App, UI/UX" required>
                         </div>
 
                         <div class="form-group">
@@ -134,6 +113,7 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Developer Portfolio. Powered by Firebase Firestore.</p>
     </footer>
